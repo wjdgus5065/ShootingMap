@@ -5,13 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7f3e086a-4913-477a-be27-bde5e02bb6b0" name="변경" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Interior.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Interior.dir/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Blueprints/BP_Bullet.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/BP_Bullet.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/Blueprints/MYBP_Player.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/MYBP_Player.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Interior/Private/MyBP_Bullet.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Interior/Private/MyBP_Bullet.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Interior/Private/MyBP_Player.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Interior/Private/MyBP_Player.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Interior/Public/MyBP_Bullet.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Interior/Public/MyBP_Bullet.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Interior/Public/MyBP_Player.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Interior/Public/MyBP_Player.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -139,6 +133,8 @@
       <workItem from="1780572867857" duration="5191000" />
       <workItem from="1780720082197" duration="40000" />
       <workItem from="1780720437334" duration="2947000" />
+      <workItem from="1780723693355" duration="4064000" />
+      <workItem from="1780728156923" duration="24000" />
     </task>
     <servers />
   </component>
