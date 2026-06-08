@@ -5,7 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7f3e086a-4913-477a-be27-bde5e02bb6b0" name="변경" comment="">
-      <change beforePath="$PROJECT_DIR$/Content/Blueprints/MYBP_Player.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/MYBP_Player.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Interior.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Interior.dir/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Blueprints/BP_Bullet.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/BP_Bullet.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Blueprints/BP_Enemy.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Blueprints/BP_Enemy.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Blueprints/BP_EnemyManager.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Maps/ShootingMap.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Maps/ShootingMap.umap" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Interior/Private/MyBP_Bullet.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Interior/Private/MyBP_Bullet.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Interior/Private/MyBP_Player.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Interior/Private/MyBP_Player.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Interior/Public/MyBP_Player.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Interior/Public/MyBP_Player.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,7 +23,11 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/Source/Interior/Private/MyBP_Boss.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Interior/Private/MyBP_Bullet.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/Interior/Private/MyBP_Enemy.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/Interior/Private/MyBP_EnemyManager.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/Interior/Public/MyBP_Boss.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/Interior/Public/MyBP_Bullet.h" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
@@ -135,6 +146,10 @@
       <workItem from="1780720437334" duration="2947000" />
       <workItem from="1780723693355" duration="4064000" />
       <workItem from="1780728156923" duration="24000" />
+      <workItem from="1780744281600" duration="8271000" />
+      <workItem from="1780814629373" duration="3000" />
+      <workItem from="1780814660300" duration="9256000" />
+      <workItem from="1780916409530" duration="3161000" />
     </task>
     <servers />
   </component>

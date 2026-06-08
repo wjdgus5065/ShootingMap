@@ -7,6 +7,7 @@
 #include "MyBP_Player.generated.h"
 
 class AMyBP_Bullet;
+class USphereComponent;
 
 UCLASS()
 class INTERIOR_API AMyBP_Player : public APawn
@@ -15,6 +16,9 @@ class INTERIOR_API AMyBP_Player : public APawn
 
 public:
 	AMyBP_Player();
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Player")
+	USphereComponent* CollisionComp;
 
 	// 이동 방향
 	FVector Direction = FVector::ZeroVector;
@@ -35,6 +39,9 @@ public:
 	UPROPERTY(EditAnywhere, Category = "Sound")
 	USoundBase* ExplosionSound;
 
+	// 플레이어 사망
+	void Player_Die();
+
 protected:
 	virtual void BeginPlay() override;
 	virtual void Tick(float DeltaTime) override;
@@ -44,5 +51,4 @@ protected:
 	void MoveHorizontal(float Value);
 	void MoveVertical(float Value);
 	void FireBullet();
-	void Player_Die();
 };

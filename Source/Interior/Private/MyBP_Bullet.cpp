@@ -1,6 +1,5 @@
 #include "MyBP_Bullet.h"
 #include "Components/SphereComponent.h"
-#include "Kismet/GameplayStatics.h"
 
 AMyBP_Bullet::AMyBP_Bullet()
 {
@@ -16,6 +15,9 @@ AMyBP_Bullet::AMyBP_Bullet()
 		this,
 		&AMyBP_Bullet::OnOverlap
 	);
+
+	Direction = FVector::UpVector;
+	Speed = 1500.f;
 }
 
 void AMyBP_Bullet::BeginPlay()
@@ -27,7 +29,18 @@ void AMyBP_Bullet::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
-	AddActorWorldOffset(Direction * Speed * DeltaTime, true);
+	FVector MoveDelta =
+		Direction.GetSafeNormal() *
+		Speed *
+		DeltaTime;
+
+	FHitResult Hit;
+
+	AddActorWorldOffset(
+		MoveDelta,
+		true,
+		&Hit
+	);
 }
 
 void AMyBP_Bullet::OnOverlap(
@@ -38,16 +51,9 @@ void AMyBP_Bullet::OnOverlap(
 	bool bFromSweep,
 	const FHitResult& SweepResult)
 {
+	// 자기 자신 무시
 	if (!OtherActor || OtherActor == this)
+	{
 		return;
-
-	UGameplayStatics::ApplyDamage(
-		OtherActor,
-		Damage,
-		nullptr,
-		this,
-		nullptr
-	);
-
-	Destroy();
+	}
 }
