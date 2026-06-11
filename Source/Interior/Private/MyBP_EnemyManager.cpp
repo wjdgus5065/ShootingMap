@@ -86,20 +86,12 @@ void AMyBP_EnemyManager::EnemyKilled()
 			return;
 		}
 
-		if (!BossSpawnRef)
-		{
-			UE_LOG(
-				LogTemp,
-				Error,
-				TEXT("BossSpawnRef NULL")
-			);
-			return;
-		}
+		FVector BossSpawnLocation(0.f, 0.f, 930.f);
 
 		AMyBP_Boss* Boss =
 			GetWorld()->SpawnActor<AMyBP_Boss>(
 				BossClass,
-				BossSpawnRef->GetActorLocation(),
+				BossSpawnLocation,
 				FRotator::ZeroRotator
 			);
 
@@ -111,6 +103,14 @@ void AMyBP_EnemyManager::EnemyKilled()
 				LogTemp,
 				Warning,
 				TEXT("Boss Spawned!")
+			);
+		}
+		else
+		{
+			UE_LOG(
+				LogTemp,
+				Error,
+				TEXT("Boss Spawn FAILED")
 			);
 		}
 	}
