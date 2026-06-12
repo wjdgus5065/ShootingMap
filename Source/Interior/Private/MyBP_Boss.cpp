@@ -15,6 +15,7 @@ AMyBP_Boss::AMyBP_Boss()
 {
 	PrimaryActorTick.bCanEverTick = true;
 
+	// 보스 충돌체 생성
 	CollisionComp =
 		CreateDefaultSubobject<UBoxComponent>(
 			TEXT("CollisionComp"));
@@ -26,6 +27,7 @@ AMyBP_Boss::AMyBP_Boss()
 
 	CollisionComp->SetGenerateOverlapEvents(true);
 
+	// 충돌 이벤트 등록
 	CollisionComp->OnComponentBeginOverlap.AddDynamic(
 		this,
 		&AMyBP_Boss::OnOverlap
@@ -36,14 +38,17 @@ void AMyBP_Boss::BeginPlay()
 {
 	Super::BeginPlay();
 
+	// HP 초기화
 	BossHP = BossMaxHP;
 
+	// 플레이어 참조
 	Player =
 		Cast<AMyBP_Player>(
 			UGameplayStatics::GetPlayerPawn(
 				GetWorld(),
 				0));
 
+	// 공격 루프 시작
 	GetWorldTimerManager().SetTimer(
 		BossLoopHandle,
 		this,
@@ -57,6 +62,7 @@ void AMyBP_Boss::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 }
 
+// 보스 공격 패턴 실행
 void AMyBP_Boss::BossLoopFunc()
 {
 	if (bBossDead)
@@ -74,6 +80,7 @@ void AMyBP_Boss::BossLoopFunc()
 	}
 }
 
+// 1페이즈 직선 공격
 void AMyBP_Boss::FireStraight()
 {
 	if (!Player || !BossBulletClass)
@@ -97,6 +104,7 @@ void AMyBP_Boss::FireStraight()
 	}
 }
 
+// 2페이즈 확산 공격
 void AMyBP_Boss::FireSpread()
 {
 	if (!Player || !BossBulletClass)
@@ -127,6 +135,7 @@ void AMyBP_Boss::FireSpread()
 	}
 }
 
+// 보스 데미지 처리
 void AMyBP_Boss::BossTakeDamage(float Damage)
 {
 	if (bBossDead)
@@ -143,11 +152,13 @@ void AMyBP_Boss::BossTakeDamage(float Damage)
 		BossHP
 	);
 
+	// HP 50% 이하 시 2페이즈 진입
 	if (BossHP <= BossMaxHP * 0.5f)
 	{
 		BossState = EBossState::Phase2;
 	}
 
+	// 보스 사망
 	if (BossHP <= 0.f)
 	{
 		bBossDead = true;
@@ -173,6 +184,7 @@ void AMyBP_Boss::BossTakeDamage(float Damage)
 	}
 }
 
+// 총알 충돌 처리
 void AMyBP_Boss::OnOverlap(
 	UPrimitiveComponent* OverlappedComponent,
 	AActor* OtherActor,

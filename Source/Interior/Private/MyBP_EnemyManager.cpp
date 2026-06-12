@@ -17,18 +17,20 @@ void AMyBP_EnemyManager::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
-	// 보스가 생성되었으면 일반 적 생성 중지
+	// 보스 생성 후 일반 적 생성 중지
 	if (bBossSpawned)
 	{
 		return;
 	}
 
+	// 생성 시간 누적
 	CurrentTime += DeltaTime;
 
 	if (CurrentTime >= CreateTime)
 	{
 		CurrentTime = 0.f;
 
+		// 적 클래스 확인
 		if (!EnemyClass)
 		{
 			UE_LOG(
@@ -39,6 +41,7 @@ void AMyBP_EnemyManager::Tick(float DeltaTime)
 			return;
 		}
 
+		// 일반 적 생성
 		FVector SpawnLocation(0.f, 0.f, 930.f);
 
 		AMyBP_Enemy* Enemy =
@@ -61,6 +64,7 @@ void AMyBP_EnemyManager::Tick(float DeltaTime)
 	}
 }
 
+// 적 처치 시 호출
 void AMyBP_EnemyManager::EnemyKilled()
 {
 	KillCount++;
@@ -72,6 +76,7 @@ void AMyBP_EnemyManager::EnemyKilled()
 		KillCount
 	);
 
+	// 10킬 달성 시 보스 생성
 	if (KillCount >= 10 &&
 		!bBossSpawned &&
 		CanSpawnBoss)
@@ -86,6 +91,7 @@ void AMyBP_EnemyManager::EnemyKilled()
 			return;
 		}
 
+		// 보스 생성
 		FVector BossSpawnLocation(0.f, 0.f, 930.f);
 
 		AMyBP_Boss* Boss =

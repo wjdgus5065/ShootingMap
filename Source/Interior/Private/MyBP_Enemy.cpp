@@ -1,6 +1,5 @@
 #include "MyBP_Enemy.h"
 
-
 #include "MyBP_Player.h"
 #include "MyBP_Bullet.h"
 #include "MyBP_EnemyManager.h"
@@ -17,11 +16,13 @@ AMyBP_Enemy::AMyBP_Enemy()
 {
 	PrimaryActorTick.bCanEverTick = true;
 
+	// 적 충돌체 생성
 	CollisionComp = CreateDefaultSubobject<UBoxComponent>(TEXT("CollisionComp"));
 	RootComponent = CollisionComp;
 
 	CollisionComp->SetCollisionProfileName(TEXT("OverlapAllDynamic"));
 
+	// 충돌 이벤트 등록
 	CollisionComp->OnComponentBeginOverlap.AddDynamic(
 		this,
 		&AMyBP_Enemy::OnOverlap
@@ -34,6 +35,7 @@ void AMyBP_Enemy::BeginPlay()
 
 	TArray<AActor*> Players;
 
+	// 플레이어 탐색
 	UGameplayStatics::GetAllActorsOfClass(
 		GetWorld(),
 		AMyBP_Player::StaticClass(),
@@ -71,6 +73,7 @@ void AMyBP_Enemy::Tick(float DeltaTime)
 		return;
 	}
 
+	// 플레이어 추적 이동
 	FVector MoveDirection =
 		(Target->GetActorLocation() - GetActorLocation()).GetSafeNormal();
 
@@ -96,6 +99,7 @@ void AMyBP_Enemy::OnOverlap(
 	bool bFromSweep,
 	const FHitResult& SweepResult)
 {
+	// 이미 사망한 경우 무시
 	if (bIsDead)
 	{
 		return;
@@ -113,22 +117,25 @@ void AMyBP_Enemy::OnOverlap(
 		*OtherActor->GetName()
 	);
 
+	// 플레이어와 충돌 시 플레이어 사망
 	if (AMyBP_Player* Player = Cast<AMyBP_Player>(OtherActor))
 	{
 		Player->Player_Die();
 		return;
 	}
 
+	// 총알과 충돌 시 적 사망
 	if (AMyBP_Bullet* Bullet = Cast<AMyBP_Bullet>(OtherActor))
 	{
 		bIsDead = true;
 
-		// 적 처치 카운트 증가
+		// 처치 수 증가
 		if (EnemyManagerRef)
 		{
 			EnemyManagerRef->EnemyKilled();
 		}
-		
+
+		// 추가 충돌 방지
 		if (CollisionComp)
 		{
 			CollisionComp->SetCollisionEnabled(
@@ -138,6 +145,7 @@ void AMyBP_Enemy::OnOverlap(
 
 		FVector Location = GetActorLocation();
 
+		// 사망 이펙트
 		if (DeathEffect)
 		{
 			UNiagaraFunctionLibrary::SpawnSystemAtLocation(
@@ -147,6 +155,7 @@ void AMyBP_Enemy::OnOverlap(
 			);
 		}
 
+		// 사망 사운드
 		if (ExplosionSound)
 		{
 			UGameplayStatics::PlaySound2D(
@@ -155,6 +164,7 @@ void AMyBP_Enemy::OnOverlap(
 			);
 		}
 
+		// 총알 제거 후 적 제거
 		Bullet->Destroy();
 		Destroy();
 	}
